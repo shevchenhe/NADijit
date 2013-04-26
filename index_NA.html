@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Fullscreen Dijit</title>
+    <link rel="stylesheet" type="text/css" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
+
+
+
+
+    <style>
+    body{
+        margin:40px;
+        padding:20px;
+    }
+    .container{
+        position:relative;
+        padding: 10px;
+        border: 1px solid #eee;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+    #map{
+        width:100%;
+        height: 500px;
+    }
+    #mydisdiv{
+        position:absolute;
+        z-index: 4;
+        top:40px;
+        right:80px;
+        width: 200px;
+    }
+        .fs{
+        font-size: 11pt;
+        font-family: 微软雅黑;
+    }
+    .fs .nadijit{
+        width: 30px;
+        height: 30px;
+        border: 2px solid #666666;
+        -webkit-user-select: none;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        cursor:pointer;
+        background: #fff;
+    }
+    .fs .addStop{
+        background: #fff url(images/stop.png) no-repeat center center;
+    }
+    .fs .addBarrier{
+        background: #fff url(images/barrier.png) no-repeat center center;
+    }
+    .fs .solveRoute{
+        background: #fff  no-repeat center center;
+    }
+    .fs .clearAll{
+        background: #fff no-repeat center center;
+        }
+    </style>
+
+
+
+
+
+    <script type="text/javascript">
+        // get current path
+        var pathRegex = new RegExp(/\/[^\/]+$/);
+        var locationPath = location.pathname.replace(pathRegex, '');
+        // Dojo Config
+        var dojoConfig = {
+            parseOnLoad: true,
+            packages: [
+            {
+                name: "modules",
+                location: locationPath + '/NADijit'
+            }
+            ]
+        };
+        </script>
+
+
+
+
+
+
+        <script src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/" type="text/javascript"></script>
+        <script type="text/javascript">
+        require(["dojo/_base/connect","dojo/_base/Color","esri/map",
+            "esri/tasks/RouteTask","esri/tasks/RouteParameters","esri/tasks/FeatureSet",
+            "esri/symbols/SimpleLineSymbol","esri/symbols/PictureMarkerSymbol","esri/symbols/SimpleMarkerSymbol",
+            "modules/NADijit"], function(connect,Color,Map,RouteTask,RouteParameters,FeatureSet,SimpleLineSymbol,PictureMarkerSymbol,SimpleMarkerSymbol,naDijit){
+
+                var myMap = new esri.Map("map",{
+                  basemap: "streets",
+                  center: [-122.416, 37.802],
+                  zoom: 15
+              });
+                var stopsymbol = new PictureMarkerSymbol("./images/GreenStickpin.png", 32, 32);
+                var barriersymbol=new PictureMarkerSymbol("./images/barrier.png", 29, 30);
+                var routesymbol=new SimpleLineSymbol().setColor(new  Color([0, 0, 255, 0.5])).setWidth(5);
+                var routeTask = new RouteTask("http://tasks.arcgisonline.com/ArcGIS/rest/services/NetworkAnalysis/ESRI_Route_NA/NAServer/Route");
+                var routeParams = new RouteParameters();
+                routeParams.stops = new FeatureSet();
+                routeParams.barriers = new FeatureSet();
+                routeParams.outSpatialReference = {"wkid":102100};
+
+                var mynadijit = new naDijit({
+                    map: myMap,
+                    routeTask:routeTask,
+                    routeParams:routeParams,
+                    stopSymbol:stopsymbol,
+                    barrierSymbol:barriersymbol,
+                    routeSymbol:routesymbol
+                }, "mydisdiv");
+                console.log(mynadijit);
+
+                mynadijit.startup();
+
+
+            //fullscreen.watch("fullscreen", function(){
+            //    console.log("fullscreen: " + fullscreen.get("fullscreen"));
+            //});
+            //connect.connect(myMap,"onMouseOver",function(evt){console.log(evt.mapPoint)})
+
+
+        });
+</script>
+
+
+
+
+
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div id="map" class="map">
+            <div id="mydisdiv"></div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
