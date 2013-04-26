@@ -63,6 +63,26 @@ define(["dojo/_base/declare","dojo/_base/connect","dojo/_base/lang",
 				this.map.graphics.add(tempStop);
 				this.routeParams.barriers.features.push(tempStop);
 			},
+			_clearStops:function(){
+				var that=this;
+				var stopsLength=this.routeParams.stops.features.length;
+				if(stopsLength){
+					array.forEach(this.routeParams.stops.features,function(feature){
+						that.map.graphics.remove(feature);
+					});
+					this.routeParams.stops.features.splice(0,stopsLength);
+				}				
+			},
+			_clearBarriers:function(){
+				var that=this;
+				var barrierLength=this.routeParams.barriers.features.length;
+				if(barrierLength){
+					array.forEach(this.routeParams.barriers.features,function(feature){
+						that.map.graphics.remove(feature);
+					});
+					this.routeParams.barriers.features.splice(0,barrierLength);
+				}
+			},
 			_removeAllConn:function(){
 				//var that=this;
 				if(this.addbarrierconn){
@@ -77,10 +97,10 @@ define(["dojo/_base/declare","dojo/_base/connect","dojo/_base/lang",
 			},
 			_solveRoute:function(){
 				var that=this;
-				if(!that.routeParams.stops){
+				if(!that.routeParams.stops.features.length){
 					alert("Please add stops first!");
 				}
-				if(that.routeParams.stops.length==1){
+				if(that.routeParams.stops.features.length==1){
 					alert("At least 2 stops needed!");
 				}
 				that.routeTask.solve(that.routeParams);
