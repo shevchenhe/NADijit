@@ -1,0 +1,29 @@
+<div class="fs">
+            <div style="width: 250px; height: 30px; background: #0093FF; text-align: center; padding-top: 10px; padding-bottom: 0px; -webkit-border-radius: 5px 5px 0px 0px; border-radius: 5px 5px 0px 0px;">
+                <div>
+                    路径分析服务
+                </div>
+            </div>
+            <div style="width: 250px; height: 50px; background: #DADADA;">
+                <div>
+                    <span style="float: left; margin-left: 40px;margin-top: 15px;">添加站点</span>
+                </div>
+                <div data-dojo-attach-point="addStop" title="addStop" data-dojo-attach-event="onclick:_addStopcon" class="nadijit addStop" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; float: left;"></div>
+                <div data-dojo-attach-point="clearStop" title="ClearStop" data-dojo-attach-event="onclick:_clearStops" class="nadijit clear" style="margin-top: 10px; margin-bottom: 10px; margin-left: 20px; float: left;"></div>
+            </div>
+            <div style="width: 250px; height: 50px; background: #DADADA;">
+                <div>
+                    <span style="float: left; margin-left: 40px;margin-top: 5px;">添加路障</span>
+                </div>
+                <div data-dojo-attach-point="addBarrier" title="addBarrier" data-dojo-attach-event="onclick:_addBarriercon" class="nadijit addBarrier" style=" float: left; margin-left: 30px;"></div>
+                <div data-dojo-attach-point="clearBarrier" title="ClearBarrier" data-dojo-attach-event="onclick:_clearBarriers" class="nadijit clear" style="margin-bottom: 10px; margin-left: 20px; float: left;"></div>
+            </div>
+            <div style="width: 250px; height: 50px; background: #DADADA;">
+                <div data-dojo-attach-point="solveRoute" title="solveRoute" data-dojo-attach-event="onclick:_solveRoute"  style="margin-top: 5px; margin-bottom: 5px; margin-left: 23px; width: 90px; height: 30px;float:left;">
+                <button type="button" class="btn btn-primary">计算路径</button>
+                </div>
+                <div data-dojo-attach-point="clearAll" title="clearAll" data-dojo-attach-event="onclick:_clearAll"  style="margin-top: 5px; margin-bottom: 5px; margin-left: 35px; width: 90px; height: 30px; padding-top: 0px; border-top-width: 2px; padding-bottom: 0px;float:left;">
+                    <button type="button" class="btn btn-primary">清除路径</button>
+                </div>
+            </div>
+        </div>

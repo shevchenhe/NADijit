@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>Fullscreen Dijit</title>
     <link rel="stylesheet" type="text/css" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 
 
 
@@ -55,12 +56,6 @@
     .fs .addBarrier{
         background: #fff url(images/barrier.png) no-repeat center center;
     }
-    .fs .solveRoute{
-        background: #fff  no-repeat center center;
-    }
-    .fs .clearAll{
-        background: #fff no-repeat center center;
-        }
     </style>
 
 
@@ -93,7 +88,7 @@
         require(["dojo/_base/connect","dojo/_base/Color","esri/map",
             "esri/tasks/RouteTask","esri/tasks/RouteParameters","esri/tasks/FeatureSet",
             "esri/symbols/SimpleLineSymbol","esri/symbols/PictureMarkerSymbol","esri/symbols/SimpleMarkerSymbol",
-            "modules/NADijit"], function(connect,Color,Map,RouteTask,RouteParameters,FeatureSet,SimpleLineSymbol,PictureMarkerSymbol,SimpleMarkerSymbol,naDijit){
+            "modules/NADijit","dijit/Dialog"], function(connect,Color,Map,RouteTask,RouteParameters,FeatureSet,SimpleLineSymbol,PictureMarkerSymbol,SimpleMarkerSymbol,naDijit,Dialog){
 
                 var myMap = new esri.Map("map",{
                   basemap: "streets",
@@ -120,6 +115,10 @@
                 console.log(mynadijit);
 
                 mynadijit.startup();
+                var fp=new Dialog("floatPane");
+                fp.addChild(mynadijit);
+                fp.startup();
+                fp.show();
 
 
             //fullscreen.watch("fullscreen", function(){
@@ -142,7 +141,8 @@
 
     <div class="container">
         <div id="map" class="map">
-            <div id="mydisdiv"></div>
+            <div id="floatPane"> <div id="mydisdiv"></div></div>
+           
         </div>
     </div>
 
