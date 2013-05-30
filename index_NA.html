@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>Fullscreen Dijit</title>
+    <title>NA Dijit</title>
     <link rel="stylesheet" type="text/css" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
+    <link rel="stylesheet" type="text/css" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/dojo/dijit/themes/claro/claro.css">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
 
 
@@ -115,10 +116,10 @@
                 console.log(mynadijit);
 
                 mynadijit.startup();
-                var fp=new Dialog("floatPane");
-                fp.addChild(mynadijit);
-                fp.startup();
-                fp.show();
+                //var fp=new Dialog({title:"TEST",style:"width:300px;height:300px"},"floatPane");
+                //fp.addChild(mynadijit);
+                //fp.startup();
+                //fp.show();
 
 
             //fullscreen.watch("fullscreen", function(){
@@ -135,13 +136,13 @@
 
 
 </head>
-<body>
+<body class="claro">
 
 
 
     <div class="container">
         <div id="map" class="map">
-            <div id="floatPane"> <div id="mydisdiv"></div></div>
+            <div id="floatPane" style="width:300px,height:300px"> <div id="mydisdiv"></div></div>
            
         </div>
     </div>
