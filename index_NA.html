@@ -106,26 +106,15 @@
                 routeParams.outSpatialReference = {"wkid":102100};
 
                 var mynadijit = new naDijit({
-                    map: myMap,
-                    routeTask:routeTask,
-                    routeParams:routeParams,
-                    stopSymbol:stopsymbol,
+                    map: myMap,//地图控件
+                    routeTask:routeTask,//RouteTask的
+                    routeParams:routeParams,//RouteTask参数
+                    stopSymbol:stopsymbol,//一些symbol
                     barrierSymbol:barriersymbol,
                     routeSymbol:routesymbol
                 }, "mydisdiv");
-                console.log(mynadijit);
-
+                //显示启动Widget
                 mynadijit.startup();
-                //var fp=new Dialog({title:"TEST",style:"width:300px;height:300px"},"floatPane");
-                //fp.addChild(mynadijit);
-                //fp.startup();
-                //fp.show();
-
-
-            //fullscreen.watch("fullscreen", function(){
-            //    console.log("fullscreen: " + fullscreen.get("fullscreen"));
-            //});
-            //connect.connect(myMap,"onMouseOver",function(evt){console.log(evt.mapPoint)})
 
 
         });

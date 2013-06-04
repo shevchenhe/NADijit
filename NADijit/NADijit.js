@@ -5,10 +5,20 @@ define(["dojo/_base/declare","dojo/_base/connect","dojo/_base/lang",
 	"dojo/domReady!"],function(declare,connect,lang,_WidgetBase,_TemplatedMixin,nadijitTemplate,on,dom,array,Map,Graphic){
 		return declare([_WidgetBase,_TemplatedMixin],{
 			templateString:nadijitTemplate,
+			/**
+			 * 
+			 * 给当前Widget自定义一些属性
+			 */
 			options:{map:null,routeTask:null,routeParams:null,stopSymbol:null,barrierSymbol:null},
 			loaded:false,
 			addstopconn:null,
 			addbarrierconn:null,
+			/**
+			 * [ NADijit的构造函数]
+			 * @param  {[Object]} option option中含有我们NADijit的一些配置信息，包括NA服务的网址，符号等信息。
+			 * @param  {[String]} srcRefNode NADijit的宿主DOM节点的id
+			 * @return {[type]}
+			 */
 			constructor:function(option,srcRefNode){//option:{routeTask:rotetask,map:map,routeParams:routeParams,
 													//stopSymbol:stopSymbol,barrierSymbol,barriersymbol,routeSymbol:routeSymbol}
 				declare.safeMixin(this.options,option);
@@ -20,6 +30,10 @@ define(["dojo/_base/declare","dojo/_base/connect","dojo/_base/lang",
 				this.barrierSymbol=this.options.barrierSymbol;
 				this.routeSymbol=this.options.routeSymbol;
 			},
+			/**
+			 * [ NADijt的显示启动函数，在使用函数的方法创建Widget后必须要调用该方法]
+			 * @return {[type]}
+			 */
 			startup:function(){
 				var that=this;
 				if(!that.map){
@@ -34,6 +48,9 @@ define(["dojo/_base/declare","dojo/_base/connect","dojo/_base/lang",
 					});
 				}
 			},
+			/*
+			从此处开始下面所有的代码，都是业务逻辑相关，例如添加站点，添加障碍，计算路径，清除路径等。
+			 */
 			_init:function(){
 				var that=this;
 				connect.connect(that.routeTask,"onSolveComplete",lang.hitch(this,that._showRoutes));
